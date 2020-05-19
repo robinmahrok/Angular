@@ -10,6 +10,10 @@ import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule} from'@angular/material/card';
 import { MatButtonModule}from '@angular/material/button';
+import {MatFormFieldModule, matFormFieldAnimations} from '@angular/material/form-field';
+import{ MatInputModule } from '@angular/material/input';
+import {MatCheckboxModule } from '@angular/material/checkbox';
+import {FormsModule } from '@angular/forms';
 import 'hammerjs';
 import { from } from 'rxjs';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
@@ -40,6 +44,7 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    FormsModule,
     AppRoutingModule,
     MatListModule,
     MatToolbarModule,
@@ -47,11 +52,14 @@ import { LoginComponent } from './login/login.component';
     MatCardModule,
     MatButtonModule,
     RouterModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule
   ],
   providers: [ DishService, PromotionService, LeaderService ],
   entryComponents:[
-    LoginComponent
+    LoginComponent,MatDialogModule
   ],
   bootstrap: [AppComponent]
 })
