@@ -13,7 +13,10 @@ import { MatButtonModule}from '@angular/material/button';
 import {MatFormFieldModule, matFormFieldAnimations} from '@angular/material/form-field';
 import{ MatInputModule } from '@angular/material/input';
 import {MatCheckboxModule } from '@angular/material/checkbox';
+import {MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {FormsModule } from '@angular/forms';
+import {ReactiveFormsModule } from '@angular/forms/';
 import 'hammerjs';
 import { from } from 'rxjs';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
@@ -38,13 +41,14 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     MatListModule,
     MatToolbarModule,
@@ -55,7 +59,9 @@ import { LoginComponent } from './login/login.component';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSelectModule,
+    MatSlideToggleModule
   ],
   providers: [ DishService, PromotionService, LeaderService ],
   entryComponents:[
