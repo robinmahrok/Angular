@@ -8,16 +8,26 @@ import {PROMOTIONS} from '../shared/promotions';
 export class PromotionService {
 
   constructor() { }
-  getPromotions():Promotion[]
+  getPromotions():Promise<Promotion[]>
   {
-    return PROMOTIONS;
+    return new Promise(resolve=>{
+      //simulate server latency  with 2 sec delay
+      setTimeout(()=>resolve(PROMOTIONS),2000);
+      
+    });
   }
-  getPromotion(id:string): Promotion
+  getPromotion(id:string): Promise<Promotion>
   {
-    return PROMOTIONS.filter((promo)=>(promo.id=== id))[0];
+    return new Promise(resolve=>{
+      //simulate server latency  with 2 sec delay
+      setTimeout(()=>resolve(PROMOTIONS.filter((promo)=>(promo.id=== id))[0]),2000);
+    });
   }
-getFeaturedPromotion():Promotion
+getFeaturedPromotion():Promise<Promotion>
 {
- return PROMOTIONS.filter((promo)=>promo.featured)[0];
+ return new Promise(resolve=>{
+  //simulate server latency  with 2 sec delay
+  setTimeout(()=>resolve(PROMOTIONS.filter((promo)=>promo.featured)[0]),2000);
+});
 }
 }
