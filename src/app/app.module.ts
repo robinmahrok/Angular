@@ -18,7 +18,15 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {FormsModule } from '@angular/forms';
 import {ReactiveFormsModule } from '@angular/forms/';
+import { MatSliderModule } from '@angular/material/slider'
 import 'hammerjs';
+import {  HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+//import { GestureConfig } from '@angular/material';
+import { GestureConfig } from '@angular/material/core';
+import {baseURL}  from'./shared/baseurl';
+//import{HttpModule } from '@angular/http';
+
 import { from } from 'rxjs';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
 import { HeaderComponent } from './header/header.component';
@@ -31,6 +39,7 @@ import { AppComponent } from './app.component';
 import {DishService } from './services/dish.service';
 import {PromotionService} from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
+import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
@@ -63,9 +72,13 @@ import { LoginComponent } from './login/login.component';
     MatInputModule,
     MatCheckboxModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSliderModule,
+    HttpClientModule
+    
   ],
-  providers: [ DishService, PromotionService, LeaderService ],
+  providers: [ DishService, PromotionService, LeaderService, ProcessHTTPMsgService,
+    { provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig },{provide: 'BaseURL', useValue: baseURL}],
   entryComponents:[
     LoginComponent,MatDialogModule
   ],
