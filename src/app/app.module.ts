@@ -22,10 +22,9 @@ import { MatSliderModule } from '@angular/material/slider'
 import 'hammerjs';
 import {  HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-//import { GestureConfig } from '@angular/material';
 import { GestureConfig } from '@angular/material/core';
 import {baseURL}  from'./shared/baseurl';
-//import{HttpModule } from '@angular/http';
+
 
 import { from } from 'rxjs';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
@@ -41,6 +40,7 @@ import {PromotionService} from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
 import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 import { LoginComponent } from './login/login.component';
+import { HighlightDirective } from './directives/highlight.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +52,7 @@ import { LoginComponent } from './login/login.component';
     AboutComponent,
     ContactComponent,
     LoginComponent,
+    HighlightDirective,
   ],
   imports: [
     BrowserModule,
@@ -78,7 +79,7 @@ import { LoginComponent } from './login/login.component';
     
   ],
   providers: [ DishService, PromotionService, LeaderService, ProcessHTTPMsgService,
-    { provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig },{provide: 'BaseURL', useValue: baseURL}],
+  ,{provide: 'BaseURL', useValue: baseURL}],
   entryComponents:[
     LoginComponent,MatDialogModule
   ],
