@@ -25,6 +25,8 @@ dish:Dish;
 promotion:Promotion;
 leader:Leader;
 disherrMess:string;
+promotionerrMess:string;
+leadererrMess:string;
   constructor(private  dishService: DishService,
     private leaderService:LeaderService,
       private promotionService: PromotionService,
@@ -32,8 +34,8 @@ disherrMess:string;
 
   ngOnInit(): void {
     this.dishService.getFeaturedDish().subscribe((dish)=>this.dish=dish,errmess => this.disherrMess = <any>errmess);
-    this.promotionService.getFeaturedPromotion().subscribe((promotion)=>this.promotion=promotion);
-    this.leaderService.getFeaturedLeader().subscribe((leader)=>this.leader=leader);
+    this.promotionService.getFeaturedPromotion().subscribe((promotion)=>this.promotion=promotion,errmess => this.promotionerrMess = <any>errmess);
+    this.leaderService.getFeaturedLeader().subscribe((leader)=>this.leader=leader,errmess => this.leadererrMess = <any>errmess);
   }
 
 }

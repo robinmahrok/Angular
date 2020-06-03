@@ -1,7 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild,Inject } from '@angular/core';
 import {FormBuilder,FormGroup,Validators} from '@angular/forms'; 
 import { Feedback,ContactType} from '../shared/feedback';
-import {flyInOut} from '../animations/app.animation';
+import { FeedbackService } from '../services/feedback.service';
+import { Observable } from 'rxjs';
+import{ visibility ,flyInOut, expand} from '../animations/app.animation';
+import { $ } from 'protractor';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -11,14 +14,20 @@ import {flyInOut} from '../animations/app.animation';
        'style':'display:block;'
   },
   animations:[
-    flyInOut()
+    flyInOut(),
+    expand()
   ]
 })
 export class ContactComponent implements OnInit {
-
+  errMess:string;
   feedbackForm:FormGroup;
   feedback: Feedback;
   contactType = ContactType;
+  feedbackcopy:Feedback;
+  feedbackIds:string[];
+  submitted:boolean;
+ sf:boolean;
+ gf:boolean;
 @ViewChild('fform') feedbackFormDirective;
 
 formErrors={
@@ -50,11 +59,15 @@ validationMessages = {
   }
 };
 
-constructor(private fb:FormBuilder) { 
+constructor(private fb:FormBuilder,private feedbackService:FeedbackService, @Inject('BaseURL') public BaseURL) { 
+
     this.createForm();
    }
 
   ngOnInit(): void {
+this.submitted=false;
+this.sf=false;
+this.gf=true;
   }
 
   createForm()
@@ -98,21 +111,23 @@ constructor(private fb:FormBuilder) {
       }
     }
   }
-
+ 
   onSubmit() {
+    this.gf=false;
     this.feedback = this.feedbackForm.value;
     console.log(this.feedback);
-    this.feedbackForm.reset({
-      firstname: '',
-      lastname: '',
-      telnum: '',
-      email: '',
-      agree: false,
-      contacttype: 'None',
-      message: ''
-    });
+    this.submitted=true;
+    
+    this.feedbackService.submitFeedback(this.feedback)
+      .subscribe(data => {
+       this.feedback = data,setTimeout(() => {
+        this.submitted=false,this.sf=true  }, 2000), setTimeout(() => {
+          this.sf=false,this.gf=true }, 7000); },
+      errmess => { this.feedback = null;  this.errMess = <any>errmess; });
+      
+     
+
     this.feedbackFormDirective.resetForm();
+   
   }
-
-
 }

@@ -30,6 +30,7 @@ getFeaturedDish():Observable<Dish>
  return this.http.get<Dish[]>(baseURL + 'dishes?featured=true').pipe(map(dishes => dishes[0]))
  .pipe(catchError(this.processHTTPMsgService.handleError));
 }
+
 getDishIds():Observable<string[] | any> {
   return this.getDishes().pipe(map(dishes => dishes.map(dish => dish.id)))
   .pipe(catchError(error=>error));
