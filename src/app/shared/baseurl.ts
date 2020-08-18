@@ -1,1 +1,1 @@
-export const baseURL = 'http://localhost:3000/';
+export const baseURL = 'http://robinangular.s3-website-us-east-1.amazonaws.com/';
