@@ -33,6 +33,7 @@ leadererrMess:string;
       @Inject('BaseURL') public BaseURL) { }
 
   ngOnInit(): void {
+    
     this.dishService.getFeaturedDish().subscribe((dish)=>this.dish=dish,errmess => this.disherrMess = <any>errmess);
     this.promotionService.getFeaturedPromotion().subscribe((promotion)=>this.promotion=promotion,errmess => this.promotionerrMess = <any>errmess);
     this.leaderService.getFeaturedLeader().subscribe((leader)=>this.leader=leader,errmess => this.leadererrMess = <any>errmess);
